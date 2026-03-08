@@ -4,11 +4,15 @@
   fetchFromGitHub,
   python3Packages,
 }: let
-  inherit (python3Packages) python buildPythonPackage;
+  inherit (python3Packages) python buildPythonPackage setuptools;
 in
   buildPythonPackage rec {
     pname = "python-validity";
     version = "0.14";
+
+    pyproject = true;
+
+    build-system = [ setuptools ];
 
     src = fetchFromGitHub {
       owner = "uunicorn";
